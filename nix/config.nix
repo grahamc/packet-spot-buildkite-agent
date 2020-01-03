@@ -1,27 +1,64 @@
 let
   pkgs = import <nixpkgs> {};
-  pin_file = "${toString ./.}/nixpkgs.json";
 
-  url = "https://github.com/nixos/nixpkgs-channels.git";
+  pins = {
+    nixpkgs = {
+      url = "https://github.com/nixos/nixpkgs-channels.git";
+      branch = "nixos-unstable-small";
+    };
+
+    nixops = {
+      url = "https://github.com/nixos/nixops.git";
+      branch = "master";
+    };
+
+    nixops-packet = {
+      url = "https://github.com/input-output-hk/nixops-packet.git";
+      branch = "master";
+    };
+  };
+
+  pin_file = "${toString ./.}/pins.json";
 in
 rec {
-  branch = "nixos-unstable-small";
-
   pinned = let
-    src = builtins.fromJSON (builtins.readFile ./nixpkgs.json);
+    sources = builtins.fromJSON (builtins.readFile ./pins.json);
   in
-    {
-      inherit (src) url rev;
-      ref = "${branch}";
-    };
+  builtins.mapAttrs (name: value:
+    builtins.fetchGit {
+      inherit (value) url rev;
+      ref = pins."${name}".branch;
+    }
+  ) sources;
 
   update = pkgs.writeScript "update.sh" ''
     #!${pkgs.bash}/bin/bash
 
     set -euxo pipefail
 
-    ${pkgs.nix-prefetch-git}/bin/nix-prefetch-git \
-      "${url}" \
-      --rev "refs/heads/${branch}" > "${pin_file}"
+    scratch=$(mktemp -d -t tmp.XXXXXXXXXX)
+    function finish {
+      rm -rf "$scratch"
+    }
+    trap finish EXIT
+
+    cd "$scratch"
+
+    echo '{' > pins.json
+
+    ${(pkgs.lib.concatStringsSep "\n")
+    (pkgs.lib.mapAttrsToList
+      (name: value: ''
+        echo '"${name}": ' >> pins.json
+        ${pkgs.nix-prefetch-git}/bin/nix-prefetch-git \
+          ${value.url} \
+          --rev "refs/heads/${value.branch}" >> pins.json
+        echo , >> pins.json
+      '')
+      pins
+    )}
+
+    echo '"bogus": "bogus :)"}' >> pins.json
+    ${pkgs.jq}/bin/jq 'del(.bogus)' pins.json > "${pin_file}"
   '';
 }
