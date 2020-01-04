@@ -13,7 +13,9 @@ let
     };
 
     nixops-packet = {
-      url = "https://github.com/input-output-hk/nixops-packet.git";
+      # uncomment when PRs #3 and #4 merge
+      #url = "https://github.com/input-output-hk/nixops-packet.git";
+      url = "https://github.com/grahamc/nixops-packet.git";
       branch = "master";
     };
   };

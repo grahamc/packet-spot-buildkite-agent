@@ -14,7 +14,9 @@ in import pins.nixpkgs {
       nixops = (import "${pins.nixops}/release.nix" {
         nixopsSrc = pins.nixops;
         nixpkgs = final.path;
-        p = (nixopsPlugins: [ final.nixops-packet ]);
+        p = (nixopsPlugins: [
+          final.nixops-packet
+        ]);
      }).build."${system}";
     })
   ];

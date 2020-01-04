@@ -7,10 +7,10 @@
     "fetchSubmodules": false
   },
   "nixops-packet": {
-    "url": "https://github.com/input-output-hk/nixops-packet.git",
-    "rev": "fc2c71450635eba75c6aafe61f9000161ddbc068",
-    "date": "2019-06-29T21:34:40-04:00",
-    "sha256": "0zkh41s5l0z6gl8ph35mq7d1ff60hw3b0gy850gk3bsxj4s5j32r",
+    "url": "https://github.com/grahamc/nixops-packet.git",
+    "rev": "e52bb5ca57f406812e75fc02c0e8ce89707bf163",
+    "date": "2020-01-03T16:14:45-05:00",
+    "sha256": "1ynj8xn6vmkk5gl0id4r2djys7p2azh3nrx0qvbfb2x5ghcr0xdi",
     "fetchSubmodules": false
   },
   "nixpkgs": {
