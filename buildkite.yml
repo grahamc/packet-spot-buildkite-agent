@@ -1,6 +1,6 @@
 steps:
   - label: Nixops Deploy
-    command: "./nix/update-nixpkgs.sh && nix-shell --run 'nixops deploy'"
+    command: "./nix/update-nixpkgs.sh && nix-shell --run 'nixops modify ./network.nix && nixops deploy'"
     agents:
       buildkite-agent-packet-spot: true
     concurrency: 1
