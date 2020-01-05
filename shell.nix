@@ -9,5 +9,5 @@ in pkgs.mkShell {
 
   NIXOPS_STATE = secrets.nixops-state-file;
   NIXOPS_DEPLOYMENT = "packet-spot-buildkite";
-  NIX_PATH = "nixpkgs=${pkgs.path}:secrets=${<secrets.nix>}";
+  NIX_PATH = "nixpkgs=${pkgs.path}:secrets.nix=${toString <secrets.nix>}";
 }
