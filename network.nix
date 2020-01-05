@@ -1,5 +1,5 @@
 let
-  secrets = import ./private/secrets.nix;
+  secrets = import <secrets.nix>;
 in {
   network.description = "buildkite-spot";
 
