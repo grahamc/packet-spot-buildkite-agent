@@ -4,17 +4,10 @@ in {
   network.description = "buildkite-spot";
 
   defaults = {
-    services.openssh.enable = true;
-
-    # clean up time
-    nix.gc = {
-      automatic = true;
-      dates = "daily";
-      options = let gbFree = 2000; in "--max-freed $((${toString gbFree} * 1024**3 - 1024 * $(df -P -k /nix/store | tail -n 1 | ${pkgs.gawk}/bin/awk '{ print $4 }')))";
-    };
-    systemd.tmpfiles.rules = [''
-      e /tmp/nix-build-* - - - 1d -
-    ''];
+    imports = [
+      ./modules/default.nix
+      ./modules/nix-collect-garbage.nix
+    ];
   };
 
   resources.packetKeyPairs.dummy = {
