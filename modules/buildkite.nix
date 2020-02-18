@@ -3,21 +3,14 @@
 {
   deployment.keys.buildkite-token = {
     text = secrets.buildkite.token;
-    user = config.users.extraUsers.buildkite-agent.name;
+    user = config.users.extraUsers.buildkite-agent-r13y.name;
     group = "keys";
     permissions = "0600";
   };
 
   deployment.keys.buildkite-ssh-private = {
     text = builtins.readFile secrets.buildkite.ssh_key.private;
-    user = config.users.extraUsers.buildkite-agent.name;
-    group = "keys";
-    permissions = "0600";
-  };
-
-  deployment.keys.buildkite-ssh-public = {
-    text = builtins.readFile secrets.buildkite.ssh_key.public;
-    user = config.users.extraUsers.buildkite-agent.name;
+    user = config.users.extraUsers.buildkite-agent-r13y.name;
     group = "keys";
     permissions = "0600";
   };
@@ -29,12 +22,20 @@
     }
   ];
 
-  services.buildkite-agent = {
+  systemd.services.buildkite-agent-r13y = {
+    after = [ "buildkite-ssh-private-key.service" "buildkite-token-key.service" ];
+    wants = [ "buildkite-ssh-private-key.service" "buildkite-token-key.service" ];
+    partOf = [ "buildkite-ssh-private-key.service" "buildkite-token-key.service" ];
+  };
+
+  services.buildkite-agents.r13y = {
     enable = true;
-    meta-data = "r13y=true,packet-spot=true";
+    tags = {
+      r13y = true;
+      packet-spot = true;
+    };
     tokenPath = "/run/keys/buildkite-token";
-    openssh.privateKeyPath = "/run/keys/buildkite-ssh-private";
-    openssh.publicKeyPath = "/run/keys/buildkite-ssh-public";
+    privateSshKeyPath = "/run/keys/buildkite-ssh-private";
     runtimePackages = [ pkgs.xz pkgs.gzip pkgs.gnutar pkgs.gitAndTools.git-crypt pkgs.nix pkgs.bash ];
     hooks.environment = ''
       export PATH=$PATH:/run/wrappers/bin/

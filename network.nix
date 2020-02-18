@@ -14,7 +14,7 @@ in {
     inherit (secrets.deployment.packet) accessKeyId project;
   };
 
-  buildkite-worker-kif = { resources, ... }: {
+  buildkite-worker = { resources, ... }: {
     deployment.targetEnv = "packet";
     deployment.packet = secrets.deployment.packet // {
       keyPair = resources.packetKeyPairs.dummy;
