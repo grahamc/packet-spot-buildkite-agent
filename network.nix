@@ -28,7 +28,7 @@ in {
       };
     };
 
-    nix.maxJobs = 12;
+    # nix.maxJobs = 12;
     nix.buildCores = 8;
     imports = [
       (import ./modules/buildkite.nix { inherit secrets; })
