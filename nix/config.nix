@@ -13,10 +13,10 @@ let
     };
 
     nixops-packet = {
-      # uncomment when PRs #3 and #4 merge
+      # uncomment when PRs #3 and #4 merge and automatic CPR merges
       #url = "https://github.com/input-output-hk/nixops-packet.git";
       url = "https://github.com/grahamc/nixops-packet.git";
-      branch = "master";
+      branch = "auto-cpr";
     };
   };
 
