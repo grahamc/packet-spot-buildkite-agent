@@ -15,12 +15,12 @@
     permissions = "0600";
   };
 
-  programs.ssh.knownHosts = [
-    {
+  programs.ssh.knownHosts = {
+    "flexo.gsc.io" = {
        hostNames = [ "flexo.gsc.io" "r13y.com" "147.75.105.137" ];
-       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZJC4F2C2DMZi1fonqMuWB1GdQR0bn3WRaEI3JYnE4d";
-    }
-  ];
+       publicKey ="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZJC4F2C2DMZi1fonqMuWB1GdQR0bn3WRaEI3JYnE4d";
+    };
+  };
 
   systemd.services.buildkite-agent-r13y = {
     after = [ "buildkite-ssh-private-key.service" "buildkite-token-key.service" ];
