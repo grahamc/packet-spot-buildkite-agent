@@ -31,8 +31,8 @@
   services.buildkite-agents.r13y = {
     enable = true;
     tags = {
-      r13y = true;
-      packet-spot = true;
+      r13y = "true";
+      packet-spot = "true";
     };
     tokenPath = "/run/keys/buildkite-token";
     privateSshKeyPath = "/run/keys/buildkite-ssh-private";

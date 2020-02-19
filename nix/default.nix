@@ -1,7 +1,21 @@
 { system ? builtins.currentSystem }:
 let
   pins = (import ./config.nix).pinned;
-in import pins.nixpkgs {
+  nixpkgs = let pkgs' = import pins.nixpkgs {}; in
+    pkgs'.stdenv.mkDerivation {
+      name = "nixpkgs-${pins.nixpkgs.rev}";
+      src = pins.nixpkgs;
+      patches = [
+        ./0001-buildkite-fixup-https-github.com-NixOS-nixpkgs-pull-.patch
+      ];
+      phases = [ "unpackPhase" "patchPhase" "installPhase" ];
+      installPhase = ''
+        cd ..
+        mv ./source $out
+      '';
+    };
+
+in import nixpkgs {
   overlays = [
     (final: super: {
       nixops-packet = (import "${pins.nixops-packet}/release.nix" {
