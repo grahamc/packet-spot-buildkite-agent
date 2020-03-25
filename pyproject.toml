@@ -10,6 +10,7 @@ nixops = {git = "https://github.com/grahamc/nixops.git", rev = "integration"}
 #nixops = { path = "../../github.com/NixOS/nixops" }
 
 
+#nixopspacket = {path = "../../github.com/input-output-hk/nixops-packet"}
 nixopspacket = {git = "https://github.com/grahamc/nixops-packet.git", rev = "poetry"}
 
 [tool.poetry.dev-dependencies]

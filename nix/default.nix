@@ -32,6 +32,11 @@ in import nixpkgs {
               buildInputs = old.buildInputs ++ [ self.poetry ];
             });
 
+            nixopspacket = super.nixopspacket.overridePythonAttrs(old: {
+              format = "pyproject";
+              buildInputs = old.buildInputs ++ [ self.poetry ];
+            });
+
             packet-python = super.packet-python.overridePythonAttrs(old: {
               propagatedBuildInputs = old.propagatedBuildInputs ++ [
                 self.pytest-runner

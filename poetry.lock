@@ -99,7 +99,7 @@ pluggy = "^0.13.1"
 typing-extensions = "^3.7.4"
 
 [package.source]
-reference = "ce06f4f8861167361d18ff5d0387113ecc85154f"
+reference = "8f4b0ed3aa7021669bbedf9aaca8638b2763a84f"
 type = "git"
 url = "https://github.com/grahamc/nixops.git"
 [[package]]
@@ -116,7 +116,7 @@ packet-python = "^1.42.0"
 pytest-runner = "^5.2"
 
 [package.source]
-reference = "fd72811ba2899664e2ef48535aeef049bfea6738"
+reference = "10f5e11b3d98d59812c80c0eb905f1f961cac2af"
 type = "git"
 url = "https://github.com/grahamc/nixops-packet.git"
 [[package]]
