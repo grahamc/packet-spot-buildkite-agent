@@ -23,7 +23,7 @@ in {
       keyPair = resources.packetKeyPairs.dummy;
       facility = "ewr1";
       plan = "m1.xlarge.x86";
-      ipxeScriptUrl = "http://907e8786.packethost.net/result/x86/netboot.ipxe";
+      ipxeScriptUrl = "http://139.178.89.161/current/907e8786.packethost.net/result/x86/netboot.ipxe";
       spotInstance = true;
       spotPriceMax = "2.00";
       tags = {
