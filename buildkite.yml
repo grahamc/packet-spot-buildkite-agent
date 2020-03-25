@@ -1,6 +1,6 @@
 steps:
   - label: Nixops Deploy
-    command: "./nix/update-nixpkgs.sh && nix-shell --run 'nixops modify ./network.nix && nixops deploy --check'"
+    command: "./nix/update-nixpkgs.sh && nix-shell --run 'nixops modify ./network.nix && nixops deploy --check --allow-recreate'"
     agents:
       buildkite-agent-packet-spot: true
     concurrency: 1
