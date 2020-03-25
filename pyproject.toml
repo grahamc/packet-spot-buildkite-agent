@@ -7,7 +7,10 @@ authors = [ "graham@grahamc.com" ]
 [tool.poetry.dependencies]
 python = "^3.7"
 nixops = {git = "https://github.com/grahamc/nixops.git", rev = "integration"}
-nixops-packet = {git = "https://github.com/grahamc/nixops-packet.git", rev = "poetry"}
+#nixops = { path = "../../github.com/NixOS/nixops" }
+
+
+nixopspacket = {git = "https://github.com/grahamc/nixops-packet.git", rev = "poetry"}
 
 [tool.poetry.dev-dependencies]
 

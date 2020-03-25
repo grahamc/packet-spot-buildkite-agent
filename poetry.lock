@@ -99,13 +99,13 @@ pluggy = "^0.13.1"
 typing-extensions = "^3.7.4"
 
 [package.source]
-reference = "e9465a4cb9c2b0b5733b15dba035942ed9d655bd"
+reference = "ce06f4f8861167361d18ff5d0387113ecc85154f"
 type = "git"
 url = "https://github.com/grahamc/nixops.git"
 [[package]]
 category = "main"
 description = ""
-name = "nixops-packet"
+name = "nixopspacket"
 optional = false
 python-versions = "^3.7"
 version = "1.0"
@@ -116,7 +116,7 @@ packet-python = "^1.42.0"
 pytest-runner = "^5.2"
 
 [package.source]
-reference = "5546c745e1c3b1ec1a9d96270afa2179ef1d8394"
+reference = "fd72811ba2899664e2ef48535aeef049bfea6738"
 type = "git"
 url = "https://github.com/grahamc/nixops-packet.git"
 [[package]]
@@ -249,7 +249,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d26c1e7f3aad24e63eeac85ec6d668a52d072a575f73ed0deeb62cb40ea572e5"
+content-hash = "0843d0463f7e4757e019b49104dcf0803981528a3bd61775e39a270131a9c15f"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -287,7 +287,7 @@ jmespath = [
     {file = "jmespath-0.9.5.tar.gz", hash = "sha256:cca55c8d153173e21baa59983015ad0daf603f9cb799904ff057bfb8ff8dc2d9"},
 ]
 nixops = []
-nixops-packet = []
+nixopspacket = []
 packet-python = [
     {file = "packet-python-1.42.0.tar.gz", hash = "sha256:c3342085b2b96591b9d214d10fe39d85e1a2487c5b0883a90ff0bf6123086f07"},
     {file = "packet_python-1.42.0-py2.py3-none-any.whl", hash = "sha256:67f892845ddbf90ae317761ae2f885c310cb1fee97abcf0ea93871440d7fb54d"},

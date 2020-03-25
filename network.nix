@@ -1,7 +1,10 @@
 let
   secrets = import <secrets.nix>;
 in {
-  network.description = "buildkite-spot";
+  network = {
+    description = "buildkite-spot";
+    storage.legacy = {};
+  };
 
   defaults = {
     imports = [
