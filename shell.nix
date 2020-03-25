@@ -4,7 +4,7 @@ let
 in pkgs.mkShell {
   name = "packet-spot-buildkite";
   buildInputs = with pkgs; [
-    nixops
+    my-nixops
   ];
 
   NIXOPS_STATE = secrets.nixops-state-file;

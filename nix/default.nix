@@ -17,20 +17,29 @@ let
 in import nixpkgs {
   overlays = [
     (final: super: {
-      nixops-packet = (import "${pins.nixops-packet}/release.nix" {
-        nixopsSrc = pins.nixops;
-        nixpkgs = final.path;
-      }); # Note: has structure like:
-      # nixops-packet.build.x86_64-linux = ....
-      # and nixops' plugin support handles this automatically.
+      my-nixops = final.poetry2nix.mkPoetryEnv {
+        projectDir = ../.;
+        overrides = final.poetry2nix.overrides.withDefaults(
+          self: super: {
+            zipp = super.zipp.overridePythonAttrs(old: {
+              propagatedBuildInputs = old.propagatedBuildInputs ++ [
+                self.toml
+              ];
+            });
 
-      nixops = (import "${pins.nixops}/release.nix" {
-        nixopsSrc = pins.nixops;
-        nixpkgs = final.path;
-        p = (nixopsPlugins: [
-          final.nixops-packet
-        ]);
-     }).build."${system}";
+            nixops = super.nixops.overridePythonAttrs(old: {
+              format = "pyproject";
+              buildInputs = old.buildInputs ++ [ self.poetry ];
+            });
+
+            packet-python = super.packet-python.overridePythonAttrs(old: {
+              propagatedBuildInputs = old.propagatedBuildInputs ++ [
+                self.pytest-runner
+              ];
+            });
+          }
+        );
+      };
     })
   ];
 }
