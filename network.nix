@@ -1,5 +1,4 @@
 let
-  secrets = import <secrets.nix>;
   project = "86d5d066-b891-4608-af55-a481aa2c0094";
 in {
   network = {
@@ -24,7 +23,7 @@ in {
   };
 
   resources.packetKeyPairs.dummy = {
-    inherit (secrets.deployment.packet) accessKeyId project;
+    inherit project;
   };
 
   buildkite-worker = { resources, ... }: {
@@ -45,7 +44,7 @@ in {
     # nix.maxJobs = 12;
     nix.buildCores = 8;
     imports = [
-      (import ./modules/buildkite.nix { inherit secrets; })
+      ./modules/buildkite.nix
     ];
   };
 }
