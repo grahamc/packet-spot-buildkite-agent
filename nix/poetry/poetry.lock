@@ -116,7 +116,7 @@ packet-python = "^1.42.0"
 pytest-runner = "^5.2"
 
 [package.source]
-reference = "a42ab5d303b78b8e063252b31725167ad0e337d1"
+reference = "882cc41f6cf9e6b503865df65fd0170a6e3c666b"
 type = "git"
 url = "https://github.com/grahamc/nixops-packet.git"
 [[package]]
