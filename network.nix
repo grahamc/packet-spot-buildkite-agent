@@ -1,12 +1,22 @@
 let
   secrets = import <secrets.nix>;
+  project = "86d5d066-b891-4608-af55-a481aa2c0094";
 in {
   network = {
     description = "buildkite-spot";
-    storage.legacy = {};
+    storage.s3 = {
+      region = "us-east-1";
+      bucket = "grahamc-nixops-state";
+      key = "packet-spot-buildkite.nixops";
+      kms_keyid = "166c5cbe-b827-4105-bdf4-a2db9b52efb4";
+    };
   };
 
   defaults = {
+    deployment.packet = {
+      inherit project;
+    };
+
     imports = [
       ./modules/default.nix
       ./modules/nix-collect-garbage.nix
@@ -19,7 +29,8 @@ in {
 
   buildkite-worker = { resources, ... }: {
     deployment.targetEnv = "packet";
-    deployment.packet = secrets.deployment.packet // {
+    deployment.packet = {
+      inherit project;
       keyPair = resources.packetKeyPairs.dummy;
       facility = "ewr1";
       plan = "m1.xlarge.x86";
