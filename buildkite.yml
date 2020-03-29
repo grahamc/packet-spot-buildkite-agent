@@ -2,6 +2,6 @@ steps:
   - label: Nixops Deploy
     command: "./nix/update-nixpkgs.sh && nix-shell --run 'R13Y_BUILDKITE_TOKEN=$(vault kv get -field=token secret/buildkite/grahamc/token) nixops deploy --check --allow-recreate'"
     agents:
-      buildkite-agent-packet-spot: true
+      nixops-deploy: true
     concurrency: 1
     concurrency_group: packet-spot-market-buildkite-deploy
