@@ -99,7 +99,7 @@ pluggy = "^0.13.1"
 typing-extensions = "^3.7.4"
 
 [package.source]
-reference = "c45896ce8679792c603ca64459fe4bd458c7dfa6"
+reference = "c36544f1af47bb57a72cfc20b1d96f9437e473d0"
 type = "git"
 url = "https://github.com/grahamc/nixops.git"
 [[package]]
