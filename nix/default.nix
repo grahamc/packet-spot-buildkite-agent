@@ -18,7 +18,7 @@ in import nixpkgs {
   overlays = [
     (final: super: {
       my-nixops = final.poetry2nix.mkPoetryEnv {
-        projectDir = ../.;
+        projectDir = ./poetry;
         overrides = final.poetry2nix.overrides.withDefaults(
           self: super: {
             zipp = super.zipp.overridePythonAttrs(old: {
@@ -32,7 +32,7 @@ in import nixpkgs {
               buildInputs = old.buildInputs ++ [ self.poetry ];
             });
 
-            nixopspacket = super.nixopspacket.overridePythonAttrs(old: {
+            nixops-packet = super.nixops-packet.overridePythonAttrs(old: {
               format = "pyproject";
               buildInputs = old.buildInputs ++ [ self.poetry ];
             });

@@ -4,10 +4,8 @@ let
 in pkgs.mkShell {
   name = "packet-spot-buildkite";
   buildInputs = with pkgs; [
+    poetry
     my-nixops
   ];
-
-  NIXOPS_STATE = secrets.nixops-state-file;
-  NIXOPS_DEPLOYMENT = "packet-spot-buildkite";
-  NIX_PATH = "nixpkgs=${pkgs.path}:secrets.nix=${toString <secrets.nix>}";
+  NIX_PATH = "nixpkgs=${pkgs.path}";
 }
