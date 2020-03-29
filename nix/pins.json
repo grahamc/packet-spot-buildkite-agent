@@ -1,9 +1,9 @@
 {
   "nixops": {
     "url": "https://github.com/nixos/nixops.git",
-    "rev": "b8f019abe2e2d0e3e0d6232f84f45039beaf49b5",
-    "date": "2020-03-22T20:59:13-04:00",
-    "sha256": "15szyaf7igg8rkv5c3qivc4mrvcq9bvxzcwd5a4z2gqk18nnvxnl",
+    "rev": "bc22d7d208473c885c94a649f2beae154b2b0d60",
+    "date": "2020-03-28T15:17:24-04:00",
+    "sha256": "0j3r9pb604l8fzxklk4q8vcl0i5666zhfllljsfp4isf036d1nzc",
     "fetchSubmodules": false
   },
   "nixops-packet": {
@@ -15,9 +15,9 @@
   },
   "nixpkgs": {
     "url": "https://github.com/nixos/nixpkgs-channels.git",
-    "rev": "54a0e269b390ed436f19cf66a74cc757eac8c84f",
-    "date": "2020-03-22T11:13:53-04:00",
-    "sha256": "16cyj39dqx05k6qr7madzrs283hplnnxl7vnx51znggy2h8hvjd9",
+    "rev": "05f0934825c2a0750d4888c4735f9420c906b388",
+    "date": "2020-03-28T12:27:16+00:00",
+    "sha256": "1g8c2w0661qn89ajp44znmwfmghbbiygvdzq0rzlvlpdiz28v6gy",
     "fetchSubmodules": false
   }
 }
