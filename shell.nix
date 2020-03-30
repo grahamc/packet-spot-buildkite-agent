@@ -6,6 +6,7 @@ in pkgs.mkShell {
     poetry
     my-nixops
     vault
+    awscli
   ];
   NIX_PATH = "nixpkgs=${pkgs.path}";
 }
