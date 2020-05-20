@@ -1,6 +1,6 @@
 steps:
   - label: Nixops Deploy
-    command: "./nix/update-nixpkgs.sh && nix-shell --run 'R13Y_BUILDKITE_TOKEN=$(vault kv get -field=token secret/buildkite/grahamc/token) nixops deploy || (nixops destroy --include buildkite-worker && nixops deploy) "
+    command: "./nix/update-nixpkgs.sh && nix-shell --run 'R13Y_BUILDKITE_TOKEN=$(vault kv get -field=token secret/buildkite/grahamc/token) nixops deploy --check --allow-recreate'"
     agents:
       nixops-deploy: true
     concurrency: 1
