@@ -26,7 +26,7 @@ in {
     inherit project;
   };
 
-  buildkite-worker = { resources, ... }: {
+  buildkite-worker-1 = { resources, ... }: {
     deployment.targetEnv = "packet";
     deployment.packet = {
       inherit project;
