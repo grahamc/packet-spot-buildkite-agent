@@ -34,7 +34,7 @@ steps:
 
   - wait
 
-  - label: :nixos: Deploy
+  - label: ":nixos: Deploy"
     concurrency_group: packet-spot-buildkite-agent
     concurrency: 1
     command: "./enter-env.sh morph deploy ./morph-network/default.nix boot"
