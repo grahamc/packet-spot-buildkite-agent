@@ -76,8 +76,8 @@ done
 
 echo "}" >>"$scratch/default.nix"
 
-git rm -rf ./morph-network
-rm -rf ./morph-network
+git rm -rf ./morph-network || true
+rm -rf ./morph-network || true
 
 mv "$scratch" ./morph-network
 git add morph-network
