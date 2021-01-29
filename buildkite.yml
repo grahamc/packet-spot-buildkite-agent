@@ -35,7 +35,7 @@ steps:
   - label: ":nixos: Deploy"
     concurrency_group: packet-spot-buildkite-agent
     concurrency: 1
-    command: "./enter-env.sh morph deploy ./morph-network/default.nix switch"
+    command: "./enter-env.sh morph deploy ./morph-network/default.nix switch --upload-secrets"
     agents:
       packet-spot-buildkite-agent: true
     concurrency: 1
