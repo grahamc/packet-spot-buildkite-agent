@@ -7,6 +7,7 @@ pkgs.mkShell {
     vault
     awscli
     jq
+    morph
 
     (
       pkgs.terraform_0_14.withPlugins (
