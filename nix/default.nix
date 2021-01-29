@@ -1,12 +1,13 @@
 { system ? builtins.currentSystem }:
 let
   pins = (import ./config.nix).pinned;
-  nixpkgs = let pkgs' = import pins.nixpkgs {}; in
+  nixpkgs = let
+    pkgs' = import pins.nixpkgs {};
+  in
     pkgs'.stdenv.mkDerivation {
       name = "nixpkgs-${pins.nixpkgs.rev}";
       src = pins.nixpkgs;
-      patches = [
-      ];
+      patches = [];
       phases = [ "unpackPhase" "patchPhase" "installPhase" ];
       installPhase = ''
         cd ..
@@ -14,9 +15,14 @@ let
       '';
     };
 
-in import nixpkgs {
+in
+import nixpkgs {
+  config = {
+    allowUnfree = true;
+  };
   overlays = [
-    (final: super: {
-    })
+    (
+      final: super: {}
+    )
   ];
 }
