@@ -3,18 +3,8 @@ let
 
   pins = {
     nixpkgs = {
-      url = "https://github.com/nixos/nixpkgs-channels.git";
+      url = "https://github.com/nixos/nixpkgs.git";
       branch = "nixos-unstable-small";
-    };
-
-    nixops = {
-      url = "https://github.com/nixos/nixops.git";
-      branch = "master";
-    };
-
-    nixops-packet = {
-      url = "https://github.com/grahamc/nixops-packet.git";
-      branch = "py3";
     };
   };
 

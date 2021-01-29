@@ -1,7 +1,44 @@
+env:
+  GIT_AUTHOR_NAME: Buildkite
+  GIT_AUTHOR_EMAIL: ci@buildkite
+  GIT_COMMITTER_NAME: Buildkite
+  GIT_COMMITTER_EMAIL: ci@buildkite
+
 steps:
-  - label: Nixops Deploy
-    command: "./nix/update-nixpkgs.sh && ./deploy.sh"
+  - label: "Update Nixpkgs"
+    commands:
+      - ./nix/update-nixpkgs.sh
+      - if ! git diff --cached --exit-code; then git commit -m "Automatic update of Nixpkgs." && ./enter-env.sh git push vaultpush HEAD:"$BUILDKITE_BRANCH"; fi
     agents:
-      nixops-deploy: true
+      packet-spot-buildkite-agent: true
+
+  - wait
+
+  - label: ":terraform: Apply"
+    concurrency_group: packet-spot-buildkite-agent
+    concurrency: 1
+    depends_on: terraform-base-confirm
+    command:
+      - ./enter-env.sh ./terraform/apply.sh
+    agents:
+      packet-spot-buildkite-agent: true
+
+  - wait
+
+  - label: "Server Intake"
+    commands:
+      - ./enter-env.sh ./make-targets.sh
+      - if ! git diff --cached --exit-code; then git commit -m "Automatic update of deploy targets." && ./enter-env.sh git push vaultpush HEAD:"$BUILDKITE_BRANCH"; fi
+    agents:
+      packet-spot-buildkite-agent: true
+
+  - wait
+
+  - label: :nixos: Deploy
+    concurrency_group: packet-spot-buildkite-agent
+    concurrency: 1
+    command: "./enter-env.sh morph deploy ./morph-network/default.nix boot"
+    agents:
+      packet-spot-buildkite-agent: true
     concurrency: 1
     concurrency_group: packet-spot-market-buildkite-deploy

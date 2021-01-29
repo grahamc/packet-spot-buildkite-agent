@@ -1,23 +1,12 @@
 {
-  "nixops": {
-    "url": "https://github.com/nixos/nixops.git",
-    "rev": "bc22d7d208473c885c94a649f2beae154b2b0d60",
-    "date": "2020-03-28T15:17:24-04:00",
-    "sha256": "0j3r9pb604l8fzxklk4q8vcl0i5666zhfllljsfp4isf036d1nzc",
-    "fetchSubmodules": false
-  },
-  "nixops-packet": {
-    "url": "https://github.com/grahamc/nixops-packet.git",
-    "rev": "c64e4e03dcd504ab3f90c201e80a63e112e3a7ef",
-    "date": "2020-03-01T22:41:09-05:00",
-    "sha256": "0b0bcc44p6nkbx5ql2ncgm970r658hsjppcj3gshzbyqjplaa3m8",
-    "fetchSubmodules": false
-  },
   "nixpkgs": {
-    "url": "https://github.com/nixos/nixpkgs-channels.git",
-    "rev": "05f0934825c2a0750d4888c4735f9420c906b388",
-    "date": "2020-03-28T12:27:16+00:00",
-    "sha256": "1g8c2w0661qn89ajp44znmwfmghbbiygvdzq0rzlvlpdiz28v6gy",
-    "fetchSubmodules": false
+    "url": "https://github.com/nixos/nixpkgs.git",
+    "rev": "b837f5748608d5d85cf562f3fa6eea6f8d1fdc42",
+    "date": "2021-01-28T20:39:44-05:00",
+    "path": "/nix/store/2110dy4m5zb2vcskpl9b7zpgpr83f1n3-nixpkgs",
+    "sha256": "0qgip7jivbsxvcv847r5jjnw6fr0m2yfk81fj98g2530qrhmsnvz",
+    "fetchSubmodules": false,
+    "deepClone": false,
+    "leaveDotGit": false
   }
 }
