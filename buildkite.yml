@@ -17,7 +17,6 @@ steps:
   - label: ":terraform: Apply"
     concurrency_group: packet-spot-buildkite-agent
     concurrency: 1
-    depends_on: terraform-base-confirm
     command:
       - ./enter-env.sh ./terraform/apply.sh
     agents:
@@ -41,4 +40,3 @@ steps:
     agents:
       packet-spot-buildkite-agent: true
     concurrency: 1
-    concurrency_group: packet-spot-market-buildkite-deploy
