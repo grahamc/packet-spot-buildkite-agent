@@ -8,7 +8,7 @@ steps:
   - label: "Update Nixpkgs"
     commands:
       - ./nix/update-nixpkgs.sh
-      - git add ./nix || true
+      - (git add ./nix || true)
       - if ! git diff --cached --exit-code; then git commit -m "Automatic update of Nixpkgs." && ./enter-env.sh git push vaultpush HEAD:"$BUILDKITE_BRANCH"; fi
     agents:
       packet-spot-buildkite-agent: true
