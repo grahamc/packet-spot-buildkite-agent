@@ -40,6 +40,7 @@
           ]);
         });
 
+      hydraJobs.builder = self.nixosConfigurations.builder.config.system.build.toplevel;
 
       nixosConfigurations.builder = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
