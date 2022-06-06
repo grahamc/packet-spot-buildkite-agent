@@ -1,18 +1,5 @@
 { config, pkgs, ... }:
 {
-  deployment = {
-    secrets = {
-      buildkite-token = {
-        source = "../buildkite.token";
-        destination = "/run/keys/buildkite-token";
-        owner.user = config.users.extraUsers.buildkite-agent-r13y.name;
-        owner.group = "keys";
-        permissions = "0600"; # this is the default
-        action = [ "sudo" "systemctl" "restart" "buildkite-agent-r13y.service" ];
-      };
-    };
-  };
-
   services.buildkite-agents.r13y = {
     enable = true;
     tags = {
